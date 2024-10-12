@@ -2,3 +2,12 @@ pandas
 ipykernel
 matplotlib
 numpy
+gdown
+PyDrive 
+google-api-python-client
+google-auth-oauthlib
+googledrivedownloader
+#transformers
+#torch
+#vllm
+python-dotenv
