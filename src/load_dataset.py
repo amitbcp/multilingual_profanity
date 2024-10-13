@@ -61,8 +61,7 @@ def get_prompts(case: int, prompt_language: str, slang_language: str, model_name
         
         for i in range(len(file_list)) : 
             if (prompt_language.lower() in file_list[i].lower() and 
-                slang_language.lower() in file_list[i].lower() and 
-                model_name.lower() in file_list[i].lower()):
+                slang_language.lower() in file_list[i].lower()) :
                 return prompts_case_1_directory + file_list[i]
         else : 
             print("\n\nNo such file found!!\n\n")
