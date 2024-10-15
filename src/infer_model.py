@@ -23,10 +23,13 @@ columns_case_2 = ["model_name", "spanish", "french", "german", "hindi", "marathi
 
 def get_model_inference(prompts_dataset, model, model_id, temperature, max_tokens) : 
     
-    prompts = [t for t in prompts_dataset['Prompts']]
+    prompts = [[{
+            "role": "user",
+            "content": t,
+            }] for t in prompts_dataset['Prompts']]
     
     sampling_params = SamplingParams(temperature=temperature, max_tokens=max_tokens)
-    outputs = model.generate(prompts, sampling_params)
+    outputs = model.chat(prompts, sampling_params)
     prompts_dataset['outputs'] = [ {"model_name": model_id, "response": output.outputs[0].text} for output in outputs ]
     
     return prompts_dataset
