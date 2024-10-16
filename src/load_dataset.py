@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 import paths
 import gdown
 from pydrive.auth import GoogleAuth
@@ -21,68 +22,49 @@ def get_filenames_in_folder(folder_path):
 
 ## get swear words file
 def get_swear_words(language: str) : 
-    swear_words_excel = paths.swear_words_url_excel
-    folder_id = swear_words_excel.split('/')[-1]
+    """
+    Input : string variable mentioning language of swear words
+    Output : Dataframe containing the respective swear words
+    """
+    swear_words_excel = paths.swear_words_excel
     
-    swear_words_directory = "temporary_storage/swear_words"
-    if not os.path.exists(swear_words_directory):
-        os.makedirs(swear_words_directory)
-
-    #print(paths.prefix + folder_id)
-    gdown.download(paths.prefix + folder_id, output = swear_words_directory, quiet=False, use_cookies=False, fuzzy=True)
-    #gdd.download_file_from_google_drive(file_id = folder_id, dest_path = swear_words_directory)
+    df_swear = pd.read_excel(swear_words_excel)
     
-    file_list = get_filenames_in_folder(swear_words_directory)
+    df_swear_language = df_swear[df_swear['language'].str.lower() == language.lower()]
     
-    for i in range(len(file_list)) : 
-        if language.lower() in file_list[i].lower() : 
-            return swear_words_directory + file_list[i]
-    else : 
-        print("\n\nNo such file found!!\n\n")
-        return None
+    return df_swear_language
 
 
 ## get prompt file
-def get_prompts(case: int, prompt_language: str, slang_language: str, model_name: str) :  
+def get_prompts(case: int, prompt_language: str, slang_language: str) :  
+    """
+    Input : case, prompt_language, slang_language
+    Output : Dataframe containing the respective prompts
+    """
     required_prompt_path = ""
-    prompts_case_1_directory = "temporary_storage/prompts_case_1"
-    prompts_case_2_directory = "temporary_storage/prompts_case_2"
+    prompts_case_1_directory = paths.prompts_case_1
+    prompts_case_2_directory = paths.prompts_case_2
     
     if case == 1: 
-        required_prompt_path = paths.prompts_case_1
-        folder_id = required_prompt_path.split('/')[-1]
-        
-        if not os.path.exists(prompts_case_1_directory):
-            os.makedirs(prompts_case_1_directory)
-        
-        gdown.download(paths.prefix + folder_id, output = prompts_case_1_directory, quiet=False, use_cookies=False, fuzzy=True)
     
         file_list = get_filenames_in_folder(prompts_case_1_directory)
         
         for i in range(len(file_list)) : 
-            if (prompt_language.lower() in file_list[i].lower() and 
-                slang_language.lower() in file_list[i].lower()) :
-                return prompts_case_1_directory + file_list[i]
+            if (prompt_language.lower() in file_list[i].lower() and slang_language.lower() in file_list[i].lower()) :
+                df_prompts = pd.read_csv(file_list[i])
+                return df_prompts
         else : 
             print("\n\nNo such file found!!\n\n")
             return None
         
     else: 
-        required_prompt_path = paths.prompts_case_2
-        folder_id = required_prompt_path.split('/')[-1]
-        
-        if not os.path.exists(prompts_case_2_directory):
-            os.makedirs(prompts_case_2_directory)
-        
-        gdown.download(paths.prefix + folder_id, output = prompts_case_2_directory, quiet=False, use_cookies=False, fuzzy=True)
     
         file_list = get_filenames_in_folder(prompts_case_2_directory)
         
         for i in range(len(file_list)) : 
-            if (prompt_language.lower() in file_list[i].lower() and 
-                slang_language.lower() in file_list[i].lower() and 
-                model_name.lower() in file_list[i].lower()):
-                return prompts_case_2_directory + file_list[i]
+            df_prompts = pd.read_csv(file_list[i])
+            df_prompts = df_prompts[df_prompts["Slang_Language"].str.lower() == slang_language.lower()]
+            return df_prompts
         else : 
             print("\n\nNo such file found!!\n\n")
             return None
@@ -90,50 +72,46 @@ def get_prompts(case: int, prompt_language: str, slang_language: str, model_name
  
 ## get model inference file
 def get_model_inferences(case, prompt_language, slang_language, model_name) : 
-    required_inference_path = ""
-    inference_case_1_directory = "temporary_storage/inference_case_1"
-    inference_case_2_directory = "temporary_storage/inference_case_2"
+    """
+    Input : case, prompt_language, slang_language & model_name
+    Output : Dataframe containing the respective prompts
+    """
+    inference_case_1_directory = paths.inference_case_1_excel
+    inference_case_2_directory = paths.inference_case_2_excel
     
     if (case == 1) : 
-        required_inference_path = paths.inference_case_1_excel
-        folder_id = required_inference_path.split('/')[-1]
-        
-        if not os.path.exists(inference_case_1_directory):
-            os.makedirs(inference_case_1_directory)
-            
-        gdown.download(paths.prefix + folder_id, output = inference_case_1_directory, quiet=False, use_cookies=False, fuzzy=True)
     
         file_list = get_filenames_in_folder(inference_case_1_directory)
-        
+        #print(len(file_list))
         for i in range(len(file_list)) : 
             if (prompt_language.lower() in file_list[i].lower() and 
                 slang_language.lower() in file_list[i].lower() and 
                 model_name.lower() in file_list[i].lower()):
-                return inference_case_1_directory + file_list[i]
+                df_model_inference = pd.read_excel(file_list[i])
+                return df_model_inference
         else : 
             print("\n\nNo such file found!!\n\n")
             return None
         
     else : 
-        required_inference_path = paths.inference_case_2_excel
-        folder_id = required_inference_path.split('/')[-1]
-        
-        if not os.path.exists(inference_case_2_directory):
-            os.makedirs(inference_case_2_directory)
-            
-        gdown.download(paths.prefix + folder_id, output = inference_case_2_directory, quiet=False, use_cookies=False, fuzzy=True)
     
         file_list = get_filenames_in_folder(inference_case_2_directory)
-        
+        #print(len(file_list))
         for i in range(len(file_list)) : 
-            if (prompt_language.lower() in file_list[i].lower() and 
-                slang_language.lower() in file_list[i].lower() and 
-                model_name.lower() in file_list[i].lower()):
-                return inference_case_2_directory + file_list[i]
+            df_model_inference = pd.read_excel(file_list[i])
+            #df_model_inference = df_model_inference[df_model_inference["Slang_Language"].str.lower() == slang_language.lower()]
+            return df_model_inference
         else : 
             print("\n\nNo such file found!!\n\n")
             return None
 
 
 #authenticate_google_drive()
-get_swear_words("bengali")
+#df_bengali = get_swear_words("bengali")
+#print(df_bengali.head())
+
+#df_french = get_prompts(2, "english", "french")
+#print(df_french.head())
+
+#df_german = get_model_inferences(2, "english", "spanish", "mixtral_8x22b")
+#print(len(df_german))

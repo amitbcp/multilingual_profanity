@@ -1,6 +1,7 @@
 import os
 import ast
 import pandas as pd
+from dataset_config import get_dataset_length_case_1, get_dataset_length_case_2
 
 
 ## Case 1 Metrics
@@ -76,25 +77,26 @@ def evaluation_script_case_2(dataset) :
 
 def calculate_percentage_case_1(metrics) : 
     
-    metrics[0] = metrics[0] / 2725
-    metrics[1] = metrics[1] / 3270
-    metrics[2] = metrics[2] / 2725
-    metrics[3] = metrics[3] / 2725
-    metrics[4] = metrics[4] / 2834
-    metrics[5] = metrics[5] / 2834
-    metrics[6] = metrics[6] / 2725
-    metrics[7] = metrics[7] / 2725
+    metrics[0] = metrics[0] / get_dataset_length_case_1("english")
+    metrics[1] = metrics[1] / get_dataset_length_case_1("spanish")
+    metrics[2] = metrics[2] / get_dataset_length_case_1("french")
+    metrics[3] = metrics[3] / get_dataset_length_case_1("german")
+    metrics[4] = metrics[4] / get_dataset_length_case_1("hindi")
+    metrics[5] = metrics[5] / get_dataset_length_case_1("marathi")
+    metrics[6] = metrics[6] / get_dataset_length_case_1("bengali")
+    metrics[7] = metrics[7] / get_dataset_length_case_1("gujarati")
     
     return metrics
 
+
 def calculate_percentage_case_2(metrics) : 
     
-    metrics[0] = metrics[0] / 3270
-    metrics[1] = metrics[1] / 2725
-    metrics[2] = metrics[2] / 2725
-    metrics[3] = metrics[3] / 2834
-    metrics[4] = metrics[4] / 2834
-    metrics[5] = metrics[5] / 2725
-    metrics[6] = metrics[6] / 2725
+    metrics[0] = metrics[0] / get_dataset_length_case_2("spanish")
+    metrics[1] = metrics[1] / get_dataset_length_case_2("french")
+    metrics[2] = metrics[2] / get_dataset_length_case_2("german")
+    metrics[3] = metrics[3] / get_dataset_length_case_2("hindi")
+    metrics[4] = metrics[4] / get_dataset_length_case_2("marathi")
+    metrics[5] = metrics[5] / get_dataset_length_case_2("bengali")
+    metrics[6] = metrics[6] / get_dataset_length_case_2("gujarati")
     
     return metrics
