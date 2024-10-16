@@ -1,4 +1,5 @@
 import os
+import paths
 import pandas as pd
 import json
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
@@ -53,16 +54,18 @@ def infer_model(case, prompt_language, swear_language, model_id) :
     
     if (case == 1) : 
         for i in languages : 
-            dataset_path = get_prompts(case, i, i, model_id) ## just an example
-            prompts_dataset = pd.read_excel(dataset_path)
+            dataset = get_prompts(case, i, i, model_id)
             
             llm = prepare_HF_model(model_id, 0.9, 2, 1024)
             
-            prompts_dataset = get_model_inference(prompts_dataset, llm, model_id, 0.0, 1024)
+            prompts_dataset = get_model_inference(dataset, llm, model_id, 0.0, 1024)
+            path = paths.inference_case_1_excel + "/" + prompt_language + "_prompts_" + swear_language + "_slangs_" + model_id + ".xlsx"
+            prompts_dataset.to_csv(path)
+            
+            prompts_dataset = pd.read_excel(path)
             
             metric = evaluation_script_case_1(prompts_dataset) ## returns count for each language, so we append it to the list, metrics
             metrics.append(metric)
-            prompts_dataset.to_excel(dataset_path)
             
         ## updating the metrics to destination file
         metrics_file_path = "metrics/case_1.xlsx"
@@ -87,15 +90,18 @@ def infer_model(case, prompt_language, swear_language, model_id) :
             updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_1)
         
     else : 
-        dataset_path = get_prompts(case, prompt_language, swear_language, model_id)
-        prompts_dataset = pd.read_excel(dataset_path)
+        dataset = get_prompts(case, prompt_language, swear_language, model_id)
         
         llm = prepare_HF_model(model_id, 0.9, 2, 1024)
         
-        prompts_dataset = get_model_inference(prompts_dataset, llm, model_id, 0.0, 1024)
+        prompts_dataset = get_model_inference(dataset, llm, model_id, 0.0, 1024)
+        
+        path = paths.inference_case_2_excel + "/" + prompt_language + "_prompts_" + model_id + ".xlsx"
+        prompts_dataset.to_excel(path)
+        
+        prompts_dataset = pd.read_excel(path)
         
         metrics.append(evaluation_script_case_2(prompts_dataset)) ## case 2 evaluation script returns a list containing counts for each language
-        prompts_dataset.to_excel(dataset_path)
         
         metrics_file_path = "metrics/case_2.xlsx"
         if os.path.exists(metrics_file_path):
@@ -103,7 +109,7 @@ def infer_model(case, prompt_language, swear_language, model_id) :
             new_metrics_df = pd.DataFrame([metrics], columns = columns_case_2)
             updated_metrics_df = pd.concat([existing_metrics_df, new_metrics_df])
         else:
-            updated_metrics_df = pd.DataFrame([metrics], columns=languages)
+            updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_2)
             
         updated_metrics_df.to_excel(metrics_file_path, index=False)
         
