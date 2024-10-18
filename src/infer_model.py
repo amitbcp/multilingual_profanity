@@ -2,18 +2,14 @@ import os
 import paths
 import pandas as pd
 import json
+import argparse
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 import torch
 from vllm import LLM, SamplingParams
 from dotenv import load_dotenv
 from load_dataset import get_swear_words, get_prompts, get_model_inferences
 from calculate_metrics import evaluation_script_case_1, evaluation_script_case_2, calculate_percentage_case_1, calculate_percentage_case_2
-
-load_dotenv()
-os.environ["HF_TOKEN"] = os.getenv("HF_KEY")
-os.environ["CUDA_DEVICE_ORDER"] = os.getenv("CUDA_DEVICE_ORDER")
-os.environ["CUDA_VISIBLE_DEVICES"] = os.getenv("CUDA_VISIBLE_DEVICES_1")
-os.environ["PYTORCH_CUDA_ALLOC_CONF"] = os.getenv("PYTORCH_CUDA_ALLOC_CONF")
+from infer_HF_model import prepare_HF_model
 
 
 languages = ["english", "spanish", "french", "german", "hindi", "marathi", "bengali", "gujarati"]
@@ -36,16 +32,7 @@ def get_model_inference(prompts_dataset, model, model_id, temperature, max_token
     return prompts_dataset
 
 
-def prepare_HF_model(model_id, gpu_memory_utilization, tensor_parallel_size, max_model_len) : 
-    llm = LLM(model = model_id,
-              gpu_memory_utilization = gpu_memory_utilization,
-              tensor_parallel_size = tensor_parallel_size,
-              max_model_len = max_model_len
-              )
-    return llm
-
-
-def infer_model(case, prompt_language, swear_language, model_id) : 
+def infer_model(case, prompt_language, swear_language, model_id, temperature, max_tokens) : 
     
     metrics = []
     metrics_percentage = []
@@ -122,3 +109,20 @@ def infer_model(case, prompt_language, swear_language, model_id) :
             updated_metrics_df = pd.concat([existing_metrics_df, new_metrics_df])
         else:
             updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_2)
+            
+
+def main(args) : 
+    infer_model(args.case, args.prompt_language, args.slang_language, args.model_id, args.temperature, args.max_tokens)
+
+
+if __name__ == "__main__" : 
+    parser = argparse.ArgumentParser(description = "Model inference script")
+    parser.add_argument("--case", type=int, required=True, help="specify if case 1 or 2")
+    parser.add_argument("--prompt_language", type=str, required=False, help="prompt language")
+    parser.add_argument("--slang_language", type=str, required=False, help="slang language")
+    parser.add_argument("--model_id", type=str, required=True, help="Model ID to use for inference")
+    parser.add_argument("--temperature", type=float, default=0.0, help="Sampling temperature")
+    parser.add_argument("--max_tokens", type=int, default=1024, help="Maximum tokens to generate")
+    
+    args = parser.parse_args()
+    main(args)

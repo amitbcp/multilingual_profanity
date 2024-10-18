@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import paths
 import gdown
+import argparse
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 import google.auth
@@ -106,12 +107,33 @@ def get_model_inferences(case, prompt_language, slang_language, model_name) :
             return None
 
 
-#authenticate_google_drive()
-#df_bengali = get_swear_words("bengali")
-#print(df_bengali.head())
+## this can be used to verify if such a dataset exists
+def main(args) : 
+    swear_words_dataset = get_swear_words(args.slang_language)
+    if swear_words_dataset is not None : 
+        print(len(swear_words_dataset))
+    else : 
+        print("No such swear words dataset exists")
+        
+    prompts_dataset = get_prompts(args.case, args.prompt_language, args.slang_language)
+    if prompts_dataset is not None : 
+        print(len(prompts_dataset))
+    else :
+        print("No such prompts dataset exists")
+        
+    model_inference_dataset = get_model_inferences(args.case, args.prompt_language, args.slang_language, args.model_id)
+    if model_inference_dataset is not None : 
+        print(len(model_inference_dataset))
+    else :
+        print("No such model inference dataset exists")
+    
 
-#df_french = get_prompts(2, "english", "french")
-#print(df_french.head())
-
-#df_german = get_model_inferences(2, "english", "spanish", "mixtral_8x22b")
-#print(len(df_german))
+if __name__ == "__main__" :
+    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser.add_argument('--case', type=int, help='Case number', required=True)
+    parser.add_argument('--prompt_language', type=str, help='Prompt language', required=False)
+    parser.add_argument('--slang_language', type=str, help='Slang language', required=False)
+    parser.add_argument('--model_id', type=str, help='Model ID', required=False)
+    
+    args = parser.parse_args()
+    main(args)
