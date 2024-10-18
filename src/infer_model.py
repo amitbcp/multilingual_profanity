@@ -1,18 +1,15 @@
 import os
+import paths
 import pandas as pd
 import json
+import argparse
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 import torch
 from vllm import LLM, SamplingParams
 from dotenv import load_dotenv
 from load_dataset import get_swear_words, get_prompts, get_model_inferences
 from calculate_metrics import evaluation_script_case_1, evaluation_script_case_2, calculate_percentage_case_1, calculate_percentage_case_2
-
-load_dotenv()
-os.environ["HF_TOKEN"] = os.getenv("HF_KEY")
-os.environ["CUDA_DEVICE_ORDER"] = os.getenv("CUDA_DEVICE_ORDER")
-os.environ["CUDA_VISIBLE_DEVICES"] = os.getenv("CUDA_VISIBLE_DEVICES_1")
-os.environ["PYTORCH_CUDA_ALLOC_CONF"] = os.getenv("PYTORCH_CUDA_ALLOC_CONF")
+from infer_HF_model import prepare_HF_model
 
 
 languages = ["english", "spanish", "french", "german", "hindi", "marathi", "bengali", "gujarati"]
@@ -23,25 +20,19 @@ columns_case_2 = ["model_name", "spanish", "french", "german", "hindi", "marathi
 
 def get_model_inference(prompts_dataset, model, model_id, temperature, max_tokens) : 
     
-    prompts = [t for t in prompts_dataset['Prompts']]
+    prompts = [[{
+            "role": "user",
+            "content": t,
+            }] for t in prompts_dataset['Prompts']]
     
     sampling_params = SamplingParams(temperature=temperature, max_tokens=max_tokens)
-    outputs = model.generate(prompts, sampling_params)
+    outputs = model.chat(prompts, sampling_params)
     prompts_dataset['outputs'] = [ {"model_name": model_id, "response": output.outputs[0].text} for output in outputs ]
     
     return prompts_dataset
 
 
-def prepare_HF_model(model_id, gpu_memory_utilization, tensor_parallel_size, max_model_len) : 
-    llm = LLM(model = model_id,
-              gpu_memory_utilization = gpu_memory_utilization,
-              tensor_parallel_size = tensor_parallel_size,
-              max_model_len = max_model_len
-              )
-    return llm
-
-
-def infer_model(case, prompt_language, swear_language, model_id) : 
+def infer_model(case, prompt_language, swear_language, model_id, temperature, max_tokens) : 
     
     metrics = []
     metrics_percentage = []
@@ -50,16 +41,18 @@ def infer_model(case, prompt_language, swear_language, model_id) :
     
     if (case == 1) : 
         for i in languages : 
-            dataset_path = get_prompts(case, i, i, model_id) ## just an example
-            prompts_dataset = pd.read_excel(dataset_path)
+            dataset = get_prompts(case, i, i, model_id)
             
             llm = prepare_HF_model(model_id, 0.9, 2, 1024)
             
-            prompts_dataset = get_model_inference(prompts_dataset, llm, model_id, 0.0, 1024)
+            prompts_dataset = get_model_inference(dataset, llm, model_id, 0.0, 1024)
+            path = paths.inference_case_1_excel + "/" + prompt_language + "_prompts_" + swear_language + "_slangs_" + model_id + ".xlsx"
+            prompts_dataset.to_csv(path)
+            
+            prompts_dataset = pd.read_excel(path)
             
             metric = evaluation_script_case_1(prompts_dataset) ## returns count for each language, so we append it to the list, metrics
             metrics.append(metric)
-            prompts_dataset.to_excel(dataset_path)
             
         ## updating the metrics to destination file
         metrics_file_path = "metrics/case_1.xlsx"
@@ -84,15 +77,18 @@ def infer_model(case, prompt_language, swear_language, model_id) :
             updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_1)
         
     else : 
-        dataset_path = get_prompts(case, prompt_language, swear_language, model_id)
-        prompts_dataset = pd.read_excel(dataset_path)
+        dataset = get_prompts(case, prompt_language, swear_language, model_id)
         
         llm = prepare_HF_model(model_id, 0.9, 2, 1024)
         
-        prompts_dataset = get_model_inference(prompts_dataset, llm, model_id, 0.0, 1024)
+        prompts_dataset = get_model_inference(dataset, llm, model_id, 0.0, 1024)
+        
+        path = paths.inference_case_2_excel + "/" + prompt_language + "_prompts_" + model_id + ".xlsx"
+        prompts_dataset.to_excel(path)
+        
+        prompts_dataset = pd.read_excel(path)
         
         metrics.append(evaluation_script_case_2(prompts_dataset)) ## case 2 evaluation script returns a list containing counts for each language
-        prompts_dataset.to_excel(dataset_path)
         
         metrics_file_path = "metrics/case_2.xlsx"
         if os.path.exists(metrics_file_path):
@@ -100,7 +96,7 @@ def infer_model(case, prompt_language, swear_language, model_id) :
             new_metrics_df = pd.DataFrame([metrics], columns = columns_case_2)
             updated_metrics_df = pd.concat([existing_metrics_df, new_metrics_df])
         else:
-            updated_metrics_df = pd.DataFrame([metrics], columns=languages)
+            updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_2)
             
         updated_metrics_df.to_excel(metrics_file_path, index=False)
         
@@ -113,3 +109,20 @@ def infer_model(case, prompt_language, swear_language, model_id) :
             updated_metrics_df = pd.concat([existing_metrics_df, new_metrics_df])
         else:
             updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_2)
+            
+
+def main(args) : 
+    infer_model(args.case, args.prompt_language, args.slang_language, args.model_id, args.temperature, args.max_tokens)
+
+
+if __name__ == "__main__" : 
+    parser = argparse.ArgumentParser(description = "Model inference script")
+    parser.add_argument("--case", type=int, required=True, help="specify if case 1 or 2")
+    parser.add_argument("--prompt_language", type=str, required=False, help="prompt language")
+    parser.add_argument("--slang_language", type=str, required=False, help="slang language")
+    parser.add_argument("--model_id", type=str, required=True, help="Model ID to use for inference")
+    parser.add_argument("--temperature", type=float, default=0.0, help="Sampling temperature")
+    parser.add_argument("--max_tokens", type=int, default=1024, help="Maximum tokens to generate")
+    
+    args = parser.parse_args()
+    main(args)
