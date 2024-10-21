@@ -128,9 +128,10 @@ def get_model_inferences(case, prompt_language, slang_language, model_name) :
         file_list = get_filenames_in_folder(inference_case_2_directory)
         #print(len(file_list))
         for i in range(len(file_list)) : 
-            df_model_inference = pd.read_excel(file_list[i])
-            #df_model_inference = df_model_inference[df_model_inference["Slang_Language"].str.lower() == slang_language.lower()]
-            return df_model_inference
+            if (model_name.lower() in file_list[i].lower()) : 
+                df_model_inference = pd.read_excel(file_list[i])
+                #df_model_inference = df_model_inference[df_model_inference["Slang_Language"].str.lower() == slang_language.lower()]
+                return df_model_inference
         else : 
             print("\n\nNo such file found!!\n\n")
             return None

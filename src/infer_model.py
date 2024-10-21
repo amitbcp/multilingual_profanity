@@ -71,7 +71,7 @@ def infer_model(case, prompt_language, swear_language, model_id, temperature, ma
         updated_metrics_df.to_excel(metrics_file_path, index=False)
         
         ## percentage
-        metrics_percentage.append(calculate_percentage_case_2(metrics))
+        metrics_percentage.append(calculate_percentage_case_1(metrics))
         percentage_metrics_file_path = "metrics/percentage_case_2.xlsx"
         if os.path.exists(percentage_metrics_file_path):
             existing_metrics_df = pd.read_excel(percentage_metrics_file_path)
@@ -79,6 +79,8 @@ def infer_model(case, prompt_language, swear_language, model_id, temperature, ma
             updated_metrics_df = pd.concat([existing_metrics_df, new_metrics_df])
         else:
             updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_1)
+            
+        updated_metrics_df.to_excel(percentage_metrics_file_path, index=False)
         
     else : 
         dataset = get_prompts(case, prompt_language, swear_language)
@@ -113,6 +115,8 @@ def infer_model(case, prompt_language, swear_language, model_id, temperature, ma
             updated_metrics_df = pd.concat([existing_metrics_df, new_metrics_df])
         else:
             updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_2)
+            
+        updated_metrics_df.to_excel(percentage_metrics_file_path, index=False)
             
 
 def main(args) : 

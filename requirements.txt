@@ -12,3 +12,4 @@ googledrivedownloader
 #vllm
 python-dotenv
 openpyxl
+xlrd
