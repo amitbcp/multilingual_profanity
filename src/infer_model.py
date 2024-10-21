@@ -2,6 +2,8 @@ import os
 import paths
 import pandas as pd
 import json
+import paths
+import gdown
 import argparse
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 import torch
@@ -11,6 +13,8 @@ from load_dataset import get_swear_words, get_prompts, get_model_inferences
 from calculate_metrics import evaluation_script_case_1, evaluation_script_case_2, calculate_percentage_case_1, calculate_percentage_case_2
 from infer_HF_model import prepare_HF_model
 
+url_drive = f"https://drive.google.com/drive/folders/{paths.drive_id}"
+url_metrics = f"https://drive.google.com/drive/folders/{paths.metrics_id}"
 
 languages = ["english", "spanish", "french", "german", "hindi", "marathi", "bengali", "gujarati"]
 indices = {"english": 0, "spanish": 1, "french": 2, "german": 3, "hindi": 4, "marathi": 5, "bengali": 6, "gujarati": 7}
@@ -40,14 +44,14 @@ def infer_model(case, prompt_language, swear_language, model_id, temperature, ma
     metrics_percentage.append(model_id)
     
     if (case == 1) : 
-        for i in languages : 
-            dataset = get_prompts(case, i, i, model_id)
+        for language in languages : 
+            dataset = get_prompts(case, language, language) ## because prompt_lang & slang_lang is same for case_1
             
-            llm = prepare_HF_model(model_id, 0.9, 2, 1024)
+            llm = prepare_HF_model(model_id, 0.9, 2, max_tokens)
             
-            prompts_dataset = get_model_inference(dataset, llm, model_id, 0.0, 1024)
-            path = paths.inference_case_1_excel + "/" + prompt_language + "_prompts_" + swear_language + "_slangs_" + model_id + ".xlsx"
-            prompts_dataset.to_csv(path)
+            prompts_dataset = get_model_inference(dataset, llm, model_id, temperature, max_tokens)
+            path = paths.inference_case_1_excel + "/" + language + "_prompts_" + language + "_slangs_" + model_id + ".xlsx"
+            prompts_dataset.to_excel(path, index=False)
             
             prompts_dataset = pd.read_excel(path)
             
@@ -77,14 +81,14 @@ def infer_model(case, prompt_language, swear_language, model_id, temperature, ma
             updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_1)
         
     else : 
-        dataset = get_prompts(case, prompt_language, swear_language, model_id)
+        dataset = get_prompts(case, prompt_language, swear_language)
         
-        llm = prepare_HF_model(model_id, 0.9, 2, 1024)
+        llm = prepare_HF_model(model_id, 0.9, 2, max_tokens)
         
-        prompts_dataset = get_model_inference(dataset, llm, model_id, 0.0, 1024)
+        prompts_dataset = get_model_inference(dataset, llm, model_id, temperature, max_tokens)
         
         path = paths.inference_case_2_excel + "/" + prompt_language + "_prompts_" + model_id + ".xlsx"
-        prompts_dataset.to_excel(path)
+        prompts_dataset.to_excel(path, index=False)
         
         prompts_dataset = pd.read_excel(path)
         
@@ -112,14 +116,24 @@ def infer_model(case, prompt_language, swear_language, model_id, temperature, ma
             
 
 def main(args) : 
+    
+    if not os.path.exists("drive") : 
+        print("\n Downloading drive folder... \n")
+        gdown.download_folder(url_drive, quiet=True, use_cookies=False)
+        print("\n drive folder downloaded!! \n")
+    if not os.path.exists("metrics") : 
+        print("\n Downloading metrics folder... \n")
+        gdown.download_folder(url_metrics, quiet=True, use_cookies=False)
+        print("\n metrics folder downloaded!! \n")
+    
     infer_model(args.case, args.prompt_language, args.slang_language, args.model_id, args.temperature, args.max_tokens)
 
 
 if __name__ == "__main__" : 
     parser = argparse.ArgumentParser(description = "Model inference script")
     parser.add_argument("--case", type=int, required=True, help="specify if case 1 or 2")
-    parser.add_argument("--prompt_language", type=str, required=False, help="prompt language")
-    parser.add_argument("--slang_language", type=str, required=False, help="slang language")
+    parser.add_argument("--prompt_language", type=str, required=True, help="prompt language")
+    parser.add_argument("--slang_language", type=str, required=True, help="slang language")
     parser.add_argument("--model_id", type=str, required=True, help="Model ID to use for inference")
     parser.add_argument("--temperature", type=float, default=0.0, help="Sampling temperature")
     parser.add_argument("--max_tokens", type=int, default=1024, help="Maximum tokens to generate")

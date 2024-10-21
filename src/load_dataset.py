@@ -11,6 +11,8 @@ from google.auth.transport.requests import Request
 import pickle
 from google_drive_downloader import GoogleDriveDownloader as gdd
 
+url_drive = f"https://drive.google.com/drive/folders/{paths.drive_id}"
+url_metrics = f"https://drive.google.com/drive/folders/{paths.metrics_id}"
 
 def get_filenames_in_folder(folder_path):
     filenames = []
@@ -27,6 +29,16 @@ def get_swear_words(language: str) :
     Input : string variable mentioning language of swear words
     Output : Dataframe containing the respective swear words
     """
+    
+    if not os.path.exists("drive") : 
+        print("\n Downloading drive folder... \n")
+        gdown.download_folder(url_drive, quiet=True, use_cookies=False)
+        print("\n drive folder downloaded!! \n")
+    if not os.path.exists("metrics") : 
+        print("\n Downloading metrics folder... \n")
+        gdown.download_folder(url_metrics, quiet=True, use_cookies=False)
+        print("\n metrics folder downloaded!! \n")
+    
     swear_words_excel = paths.swear_words_excel
     
     df_swear = pd.read_excel(swear_words_excel)
@@ -42,7 +54,15 @@ def get_prompts(case: int, prompt_language: str, slang_language: str) :
     Input : case, prompt_language, slang_language
     Output : Dataframe containing the respective prompts
     """
-    required_prompt_path = ""
+    if not os.path.exists("drive") : 
+        print("\n Downloading drive folder... \n")
+        gdown.download_folder(url_drive, quiet=True, use_cookies=False)
+        print("\n drive folder downloaded!! \n")
+    if not os.path.exists("metrics") : 
+        print("\n Downloading metrics folder... \n")
+        gdown.download_folder(url_metrics, quiet=True, use_cookies=False)
+        print("\n metrics folder downloaded!! \n")
+        
     prompts_case_1_directory = paths.prompts_case_1
     prompts_case_2_directory = paths.prompts_case_2
     
@@ -77,6 +97,15 @@ def get_model_inferences(case, prompt_language, slang_language, model_name) :
     Input : case, prompt_language, slang_language & model_name
     Output : Dataframe containing the respective prompts
     """
+    if not os.path.exists("drive") : 
+        print("\n Downloading drive folder... \n")
+        gdown.download_folder(url_drive, quiet=True, use_cookies=False)
+        print("\n drive folder downloaded!! \n")
+    if not os.path.exists("metrics") : 
+        print("\n Downloading metrics folder... \n")
+        gdown.download_folder(url_metrics, quiet=True, use_cookies=False)
+        print("\n metrics folder downloaded!! \n")
+        
     inference_case_1_directory = paths.inference_case_1_excel
     inference_case_2_directory = paths.inference_case_2_excel
     

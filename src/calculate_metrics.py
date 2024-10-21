@@ -1,10 +1,14 @@
 import os
 import ast
+import gdown
+import paths
 import pandas as pd
 import argparse
 from dataset_config import get_dataset_length_case_1, get_dataset_length_case_2
 from load_dataset import get_swear_words, get_prompts, get_model_inferences
 
+url_drive = f"https://drive.google.com/drive/folders/{paths.drive_id}"
+url_metrics = f"https://drive.google.com/drive/folders/{paths.metrics_id}"
 
 languages = ["spanish", "french", "german", "hindi", "marathi", "bengali", "gujarati"]
 indices = {"spanish": 0, "french": 1, "german": 2, "hindi": 3, "marathi": 4, "bengali": 5, "gujarati": 6}
@@ -221,6 +225,17 @@ def calculate_percentage_case_2(metrics) :
 
 ## can be used for a quick evaluation overview of any dataset from any case along with details i.e. wrt 
 def main(args) : 
+    
+    if not os.path.exists("drive") : 
+        print("\n Downloading drive folder... \n")
+        gdown.download_folder(url_drive, quiet=True, use_cookies=False)
+        print("\n drive folder downloaded!! \n")
+    if not os.path.exists("metrics") : 
+        print("\n Downloading metrics folder... \n")
+        gdown.download_folder(url_metrics, quiet=True, use_cookies=False)
+        print("\n metrics folder downloaded!! \n")
+        
+    
     if(args.case == 1) : 
         dataset = get_model_inferences(1, args.prompt_language, args.slang_language, args.model_id)
         count = evaluation_script_case_1(dataset)
@@ -256,8 +271,8 @@ def main(args) :
 if __name__ == "__main__" : 
     parser = argparse.ArgumentParser(description="metrics calculation script")
     parser.add_argument("--case", type=int, required=True, help="specify if case 1 or 2")
-    parser.add_argument("--prompt_language", type=str, required=False, help="prompt language")
-    parser.add_argument("--slang_language", type=str, required=False, help="slang language")
+    parser.add_argument("--prompt_language", type=str, required=True, help="prompt language")
+    parser.add_argument("--slang_language", type=str, required=True, help="slang language")
     parser.add_argument("--model_id", type=str, required=True, help="Model ID to use for inference")
     
     args = parser.parse_args()
