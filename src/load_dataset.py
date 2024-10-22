@@ -61,8 +61,8 @@ def get_model_inferences(case, prompt_language, slang_language, model_name):
     Input : case, prompt_language, slang_language & model_name
     Output : Dataframe containing the respective prompts
     """
-    inference_case_1_directory = dataset_paths["inference_paths"]["case_1"]
-    inference_case_2_directory = dataset_paths["inference_paths"]["case_2"]
+    inference_case_1_directory = inference_paths["case_1"]
+    inference_case_2_directory = inference_paths["case_2"]
     
     if case == 1:
         file_list = get_filenames_in_folder(inference_case_1_directory)

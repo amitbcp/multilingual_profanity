@@ -4,11 +4,7 @@ import pandas as pd
 import argparse
 from load_dataset import get_prompts
 from paths import drive_info
-from downloader import download_folder_if_not_exists, url_drive, url_metrics
 
-def download_resources():
-    download_folder_if_not_exists("drive", url_drive)
-    download_folder_if_not_exists("metrics", url_metrics)
 
 def get_dataset_length_case_1(language): 
     """
