@@ -6,9 +6,7 @@ import pandas as pd
 import argparse
 from dataset_config import get_dataset_length_case_1, get_dataset_length_case_2
 from load_dataset import get_swear_words, get_prompts, get_model_inferences
-
-url_drive = f"https://drive.google.com/drive/folders/{paths.drive_id}"
-url_metrics = f"https://drive.google.com/drive/folders/{paths.metrics_id}"
+from downloader import download_folder_if_not_exists, url_drive, url_metrics
 
 languages = ["spanish", "french", "german", "hindi", "marathi", "bengali", "gujarati"]
 indices = {"spanish": 0, "french": 1, "german": 2, "hindi": 3, "marathi": 4, "bengali": 5, "gujarati": 6}
