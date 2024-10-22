@@ -2,7 +2,7 @@ model_metadata = {
     "meta-llama/Llama-3.2-1B-Instruct": "llama3_2_1b_instruct",
     "meta-llama/Llama-3.1-70B": "llama3_1_70b_instruct",
     "meta-llama/Llama-3.2-3B-Instruct": "llama3_2_3b_instruct",
-    "meta-llama/Meta-Llama-3-70B-Instruct": "llama3_70b_instruct",
+    #"meta-llama/Meta-Llama-3-70B-Instruct": "llama3_70b_instruct",
     "meta-llama/Meta-Llama-3-8B-Instruct": "llama3_8b_instruct",
     "meta-llama/Llama-3.1-8B-Instruct": "llama3_1_8b_instruct",
     "mistralai/Mistral-7B-Instruct-v0.1": "mistral_7b_instruct_v1",

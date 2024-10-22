@@ -4,6 +4,7 @@ import pandas as pd
 import argparse
 from load_dataset import get_prompts
 from paths import drive_info
+from load_dataset import download_resources
 
 
 def get_dataset_length_case_1(language): 
