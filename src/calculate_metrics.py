@@ -14,12 +14,71 @@ indices = {"english": 0, "spanish": 1, "french": 2, "german": 3, "hindi": 4, "ma
 columns_case_1 = ["model_name", "english", "spanish", "french", "german", "hindi", "marathi", "bengali", "gujarati"]
 columns_case_2 = ["model_name", "spanish", "french", "german", "hindi", "marathi", "bengali", "gujarati"]
 
+## model_names from utils
 models = model_metadata.values()
+
+
+def save_metrics(case, metrics, metrics_percentage) : 
+    if case == 1 : 
+        ## counts
+        metrics_file_path = "metrics/case_1.xlsx"
+        if os.path.exists(metrics_file_path) : 
+            print("File exists, appending new data.")
+            existing_metrics_df = pd.read_excel(metrics_file_path)
+            new_metrics_df = pd.DataFrame([metrics], columns = columns_case_1)
+            updated_metrics_df = pd.concat([existing_metrics_df, new_metrics_df], ignore_index=True)
+        else : 
+            print("File does not exist, creating new file.")
+            updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_1)
+        
+        updated_metrics_df.to_excel(metrics_file_path, index=False)
+        
+        ## percentage
+        percentage_metrics_file_path = "metrics/percentage_case_1.xlsx"
+        if os.path.exists(percentage_metrics_file_path):
+            print("File exists, appending new data.")
+            existing_metrics_df = pd.read_excel(percentage_metrics_file_path)
+            new_metrics_df = pd.DataFrame([metrics_percentage], columns = columns_case_1)
+            updated_percentage_metrics_df = pd.concat([existing_metrics_df, new_metrics_df])
+        else:
+            print("File does not exist, creating new file.")
+            updated_percentage_metrics_df = pd.DataFrame([metrics_percentage], columns = columns_case_1)
+                
+        updated_percentage_metrics_df.to_excel(percentage_metrics_file_path, index=False)
+        
+    else : 
+        ## count
+        metrics_file_path = "metrics/case_2.xlsx"
+        if os.path.exists(metrics_file_path) : 
+            print("File exists, appending new data.")
+            existing_metrics_df = pd.read_excel(metrics_file_path)
+            new_metrics_df = pd.DataFrame([metrics], columns = columns_case_2)
+            updated_metrics_df = pd.concat([existing_metrics_df, new_metrics_df], ignore_index=True)
+        else : 
+            print("File does not exist, creating new file.")
+            updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_2)
+        
+        updated_metrics_df.to_excel(metrics_file_path, index=False)
+        
+        ## percentage
+        percentage_metrics_file_path = "metrics/percentage_case_2.xlsx"
+        if os.path.exists(percentage_metrics_file_path):
+            print("File exists, appending new data.")
+            existing_metrics_df = pd.read_excel(percentage_metrics_file_path)
+            new_metrics_df = pd.DataFrame([metrics_percentage], columns = columns_case_2)
+            updated_percentage_metrics_df = pd.concat([existing_metrics_df, new_metrics_df])
+        else:
+            print("File does not exist, creating new file.")
+            updated_percentage_metrics_df = pd.DataFrame([metrics_percentage], columns = columns_case_2)
+                
+        updated_percentage_metrics_df.to_excel(percentage_metrics_file_path, index=False)
+
+
 
 def calculate_metrics(case) : 
     
     if (case == 1) : 
-        for model_id in models : 
+        for model_id in models : # models -> model_names from utils
             print(f"\nDumping metrics for {model_id}\n")
             metrics = []
             metrics_percentage = []
@@ -40,32 +99,7 @@ def calculate_metrics(case) :
             print(metrics_percentage)
             
             ## updating the metrics to destination file
-            metrics_file_path = "metrics/case_1.xlsx"
-            if os.path.exists(metrics_file_path):
-                print("File exists, appending new data.")
-                existing_metrics_df = pd.read_excel(metrics_file_path)
-                new_metrics_df = pd.DataFrame([metrics], columns = columns_case_1)
-                updated_metrics_df = pd.concat([existing_metrics_df, new_metrics_df], ignore_index=True)
-            else:
-                print("File does not exist, creating new file.")
-                updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_1)
-            
-            # Save the updated metrics to the file
-            updated_metrics_df.to_excel(metrics_file_path, index=False)
-            
-            ## percentage
-            #metrics_percentage.append(calculate_percentage_case_1(metrics))
-            percentage_metrics_file_path = "metrics/percentage_case_1.xlsx"
-            if os.path.exists(percentage_metrics_file_path):
-                print("File exists, appending new data.")
-                existing_metrics_df = pd.read_excel(percentage_metrics_file_path)
-                new_metrics_df = pd.DataFrame([metrics_percentage], columns = columns_case_1)
-                updated_percentage_metrics_df = pd.concat([existing_metrics_df, new_metrics_df])
-            else:
-                print("File does not exist, creating new file.")
-                updated_percentage_metrics_df = pd.DataFrame([metrics_percentage], columns = columns_case_1)
-                
-            updated_percentage_metrics_df.to_excel(percentage_metrics_file_path, index=False)
+            save_metrics(case, metrics, metrics_percentage)
             
             print(f"\nDumped metrics for {model_id}!!")
             
@@ -82,39 +116,15 @@ def calculate_metrics(case) :
             
             metric, metrics_percentage = evaluate_case_2(dataset)
 
-            for i in metric : 
-                metrics.append(i) ## case 2 evaluation script returns a list containing counts for each language
-            for i in metrics_percentage :
-                metrics_percentage.append(i)
+            for value in metric : 
+                metrics.append(value) ## case 2 evaluation script returns a list containing counts for each language
+            for value in metrics_percentage :
+                metrics_percentage.append(value) ## case 2 evaluation script returns a list containing percentages for each language
             
             print(metrics)
             print(metrics_percentage)
             
-            metrics_file_path = "metrics/case_2.xlsx"
-            if os.path.exists(metrics_file_path):
-                print("File exists, appending new data.")
-                existing_metrics_df = pd.read_excel(metrics_file_path)
-                new_metrics_df = pd.DataFrame([metrics], columns = columns_case_2)
-                updated_metrics_df = pd.concat([existing_metrics_df, new_metrics_df])
-            else:
-                print("File does not exist, creating new file.")
-                updated_metrics_df = pd.DataFrame([metrics], columns = columns_case_2)
-                
-            updated_metrics_df.to_excel(metrics_file_path, index=False)
-            
-            ## percentage
-            #metrics_percentage.append(calculate_percentage_case_2(metrics))
-            percentage_metrics_file_path = "metrics/percentage_case_2.xlsx"
-            if os.path.exists(percentage_metrics_file_path):
-                print("File exists, appending new data.")
-                existing_metrics_df = pd.read_excel(percentage_metrics_file_path)
-                new_metrics_df = pd.DataFrame([metrics_percentage], columns = columns_case_2)
-                updated_percentage_metrics_df = pd.concat([existing_metrics_df, new_metrics_df])
-            else:
-                print("File does not exist, creating new file.")
-                updated_percentage_metrics_df = pd.DataFrame([metrics_percentage], columns = columns_case_2)
-                
-            updated_percentage_metrics_df.to_excel(percentage_metrics_file_path, index=False)
+            save_metrics(case, metrics, metrics_percentage)
             
             print(f"\nDumped metrics for {model_id}!!")
             
