@@ -1,0 +1,1007 @@
+[
+    [
+        "llama3_2_1b_instruct",
+        {
+            "english": {
+                "negative": 410,
+                "positive": 548,
+                "formal": 571,
+                "informal": 387
+            }
+        },
+        {
+            "spanish": {
+                "negative": 74,
+                "positive": 87,
+                "formal": 137,
+                "informal": 24
+            }
+        },
+        {
+            "french": {
+                "negative": 69,
+                "positive": 136,
+                "formal": 151,
+                "informal": 54
+            }
+        },
+        {
+            "german": {
+                "negative": 221,
+                "positive": 187,
+                "formal": 326,
+                "informal": 82
+            }
+        },
+        {
+            "hindi": {
+                "negative": 148,
+                "positive": 188,
+                "formal": 208,
+                "informal": 128
+            }
+        },
+        {
+            "marathi": {
+                "negative": 418,
+                "positive": 408,
+                "formal": 489,
+                "informal": 337
+            }
+        },
+        {
+            "bengali": {
+                "negative": 546,
+                "positive": 527,
+                "formal": 680,
+                "informal": 393
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 525,
+                "positive": 433,
+                "formal": 612,
+                "informal": 346
+            }
+        }
+    ],
+    [
+        "llama3_1_70b_instruct",
+        {
+            "english": {
+                "negative": 976,
+                "positive": 870,
+                "formal": 1193,
+                "informal": 653
+            }
+        },
+        {
+            "spanish": {
+                "negative": 604,
+                "positive": 643,
+                "formal": 794,
+                "informal": 453
+            }
+        },
+        {
+            "french": {
+                "negative": 771,
+                "positive": 750,
+                "formal": 978,
+                "informal": 543
+            }
+        },
+        {
+            "german": {
+                "negative": 628,
+                "positive": 758,
+                "formal": 863,
+                "informal": 523
+            }
+        },
+        {
+            "hindi": {
+                "negative": 585,
+                "positive": 795,
+                "formal": 822,
+                "informal": 558
+            }
+        },
+        {
+            "marathi": {
+                "negative": 399,
+                "positive": 410,
+                "formal": 558,
+                "informal": 251
+            }
+        },
+        {
+            "bengali": {
+                "negative": 652,
+                "positive": 738,
+                "formal": 920,
+                "informal": 470
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 355,
+                "positive": 373,
+                "formal": 445,
+                "informal": 283
+            }
+        }
+    ],
+    [
+        "llama3_2_3b_instruct",
+        {
+            "english": {
+                "negative": 729,
+                "positive": 800,
+                "formal": 1019,
+                "informal": 510
+            }
+        },
+        {
+            "spanish": {
+                "negative": 292,
+                "positive": 383,
+                "formal": 459,
+                "informal": 216
+            }
+        },
+        {
+            "french": {
+                "negative": 326,
+                "positive": 345,
+                "formal": 497,
+                "informal": 174
+            }
+        },
+        {
+            "german": {
+                "negative": 286,
+                "positive": 252,
+                "formal": 358,
+                "informal": 180
+            }
+        },
+        {
+            "hindi": {
+                "negative": 391,
+                "positive": 385,
+                "formal": 437,
+                "informal": 339
+            }
+        },
+        {
+            "marathi": {
+                "negative": 377,
+                "positive": 233,
+                "formal": 386,
+                "informal": 224
+            }
+        },
+        {
+            "bengali": {
+                "negative": 435,
+                "positive": 404,
+                "formal": 512,
+                "informal": 327
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 330,
+                "positive": 301,
+                "formal": 385,
+                "informal": 246
+            }
+        }
+    ],
+    [
+        "llama3_70b_instruct",
+        {
+            "english": {
+                "negative": 1200,
+                "positive": 1096,
+                "formal": 1600,
+                "informal": 696
+            }
+        },
+        {
+            "spanish": {
+                "negative": 1067,
+                "positive": 874,
+                "formal": 1296,
+                "informal": 645
+            }
+        },
+        {
+            "french": {
+                "negative": 1032,
+                "positive": 927,
+                "formal": 1288,
+                "informal": 671
+            }
+        },
+        {
+            "german": {
+                "negative": 1019,
+                "positive": 803,
+                "formal": 1182,
+                "informal": 640
+            }
+        },
+        {
+            "hindi": {
+                "negative": 224,
+                "positive": 48,
+                "formal": 193,
+                "informal": 79
+            }
+        },
+        {
+            "marathi": {
+                "negative": 117,
+                "positive": 105,
+                "formal": 162,
+                "informal": 60
+            }
+        },
+        {
+            "bengali": {
+                "negative": 116,
+                "positive": 69,
+                "formal": 105,
+                "informal": 80
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 1,
+                "positive": 0,
+                "formal": 1,
+                "informal": 0
+            }
+        }
+    ],
+    [
+        "llama3_8b_instruct",
+        {
+            "english": {
+                "negative": 546,
+                "positive": 918,
+                "formal": 1027,
+                "informal": 437
+            }
+        },
+        {
+            "spanish": {
+                "negative": 764,
+                "positive": 565,
+                "formal": 906,
+                "informal": 423
+            }
+        },
+        {
+            "french": {
+                "negative": 457,
+                "positive": 490,
+                "formal": 633,
+                "informal": 314
+            }
+        },
+        {
+            "german": {
+                "negative": 463,
+                "positive": 388,
+                "formal": 495,
+                "informal": 356
+            }
+        },
+        {
+            "hindi": {
+                "negative": 28,
+                "positive": 36,
+                "formal": 41,
+                "informal": 23
+            }
+        },
+        {
+            "marathi": {
+                "negative": 52,
+                "positive": 34,
+                "formal": 44,
+                "informal": 42
+            }
+        },
+        {
+            "bengali": {
+                "negative": 77,
+                "positive": 110,
+                "formal": 66,
+                "informal": 121
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 221,
+                "positive": 147,
+                "formal": 217,
+                "informal": 151
+            }
+        }
+    ],
+    [
+        "llama3_1_8b_instruct",
+        {
+            "english": {
+                "negative": 767,
+                "positive": 783,
+                "formal": 1147,
+                "informal": 403
+            }
+        },
+        {
+            "spanish": {
+                "negative": 426,
+                "positive": 455,
+                "formal": 614,
+                "informal": 267
+            }
+        },
+        {
+            "french": {
+                "negative": 334,
+                "positive": 355,
+                "formal": 481,
+                "informal": 208
+            }
+        },
+        {
+            "german": {
+                "negative": 376,
+                "positive": 453,
+                "formal": 592,
+                "informal": 237
+            }
+        },
+        {
+            "hindi": {
+                "negative": 497,
+                "positive": 621,
+                "formal": 687,
+                "informal": 431
+            }
+        },
+        {
+            "marathi": {
+                "negative": 443,
+                "positive": 382,
+                "formal": 531,
+                "informal": 294
+            }
+        },
+        {
+            "bengali": {
+                "negative": 503,
+                "positive": 478,
+                "formal": 655,
+                "informal": 326
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 529,
+                "positive": 463,
+                "formal": 602,
+                "informal": 390
+            }
+        }
+    ],
+    [
+        "mistral_7b_instruct_v1",
+        {
+            "english": {
+                "negative": 1177,
+                "positive": 1094,
+                "formal": 1518,
+                "informal": 753
+            }
+        },
+        {
+            "spanish": {
+                "negative": 642,
+                "positive": 539,
+                "formal": 833,
+                "informal": 348
+            }
+        },
+        {
+            "french": {
+                "negative": 705,
+                "positive": 720,
+                "formal": 924,
+                "informal": 501
+            }
+        },
+        {
+            "german": {
+                "negative": 690,
+                "positive": 519,
+                "formal": 758,
+                "informal": 451
+            }
+        },
+        {
+            "hindi": {
+                "negative": 909,
+                "positive": 844,
+                "formal": 1138,
+                "informal": 615
+            }
+        },
+        {
+            "marathi": {
+                "negative": 1008,
+                "positive": 1043,
+                "formal": 1402,
+                "informal": 649
+            }
+        },
+        {
+            "bengali": {
+                "negative": 731,
+                "positive": 764,
+                "formal": 1003,
+                "informal": 492
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 887,
+                "positive": 917,
+                "formal": 1232,
+                "informal": 572
+            }
+        }
+    ],
+    [
+        "mistral_7b_instruct_v2",
+        {
+            "english": {
+                "negative": 1262,
+                "positive": 1224,
+                "formal": 1705,
+                "informal": 781
+            }
+        },
+        {
+            "spanish": {
+                "negative": 560,
+                "positive": 499,
+                "formal": 782,
+                "informal": 277
+            }
+        },
+        {
+            "french": {
+                "negative": 688,
+                "positive": 607,
+                "formal": 866,
+                "informal": 429
+            }
+        },
+        {
+            "german": {
+                "negative": 550,
+                "positive": 520,
+                "formal": 686,
+                "informal": 384
+            }
+        },
+        {
+            "hindi": {
+                "negative": 36,
+                "positive": 119,
+                "formal": 56,
+                "informal": 99
+            }
+        },
+        {
+            "marathi": {
+                "negative": 36,
+                "positive": 71,
+                "formal": 33,
+                "informal": 74
+            }
+        },
+        {
+            "bengali": {
+                "negative": 20,
+                "positive": 46,
+                "formal": 25,
+                "informal": 41
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 37,
+                "positive": 35,
+                "formal": 39,
+                "informal": 33
+            }
+        }
+    ],
+    [
+        "mistral_7b_instruct_v3",
+        {
+            "english": {
+                "negative": 1191,
+                "positive": 1242,
+                "formal": 1649,
+                "informal": 784
+            }
+        },
+        {
+            "spanish": {
+                "negative": 745,
+                "positive": 756,
+                "formal": 985,
+                "informal": 516
+            }
+        },
+        {
+            "french": {
+                "negative": 754,
+                "positive": 747,
+                "formal": 1002,
+                "informal": 499
+            }
+        },
+        {
+            "german": {
+                "negative": 658,
+                "positive": 640,
+                "formal": 838,
+                "informal": 460
+            }
+        },
+        {
+            "hindi": {
+                "negative": 360,
+                "positive": 361,
+                "formal": 399,
+                "informal": 322
+            }
+        },
+        {
+            "marathi": {
+                "negative": 720,
+                "positive": 730,
+                "formal": 1016,
+                "informal": 434
+            }
+        },
+        {
+            "bengali": {
+                "negative": 543,
+                "positive": 494,
+                "formal": 583,
+                "informal": 454
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 774,
+                "positive": 698,
+                "formal": 1057,
+                "informal": 415
+            }
+        }
+    ],
+    [
+        "mixtral_8x22b_instruct_v01",
+        {
+            "english": {
+                "negative": 1134,
+                "positive": 1218,
+                "formal": 1614,
+                "informal": 738
+            }
+        },
+        {
+            "spanish": {
+                "negative": 950,
+                "positive": 912,
+                "formal": 1204,
+                "informal": 658
+            }
+        },
+        {
+            "french": {
+                "negative": 807,
+                "positive": 807,
+                "formal": 1039,
+                "informal": 575
+            }
+        },
+        {
+            "german": {
+                "negative": 850,
+                "positive": 889,
+                "formal": 1154,
+                "informal": 585
+            }
+        },
+        {
+            "hindi": {
+                "negative": 3,
+                "positive": 7,
+                "formal": 3,
+                "informal": 7
+            }
+        },
+        {
+            "marathi": {
+                "negative": 20,
+                "positive": 34,
+                "formal": 28,
+                "informal": 26
+            }
+        },
+        {
+            "bengali": {
+                "negative": 7,
+                "positive": 20,
+                "formal": 8,
+                "informal": 19
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 37,
+                "positive": 51,
+                "formal": 57,
+                "informal": 31
+            }
+        }
+    ],
+    [
+        "mixtral_8x7b_instruct_v01",
+        {
+            "english": {
+                "negative": 1307,
+                "positive": 1265,
+                "formal": 1758,
+                "informal": 814
+            }
+        },
+        {
+            "spanish": {
+                "negative": 985,
+                "positive": 835,
+                "formal": 1222,
+                "informal": 598
+            }
+        },
+        {
+            "french": {
+                "negative": 1022,
+                "positive": 812,
+                "formal": 1269,
+                "informal": 565
+            }
+        },
+        {
+            "german": {
+                "negative": 954,
+                "positive": 826,
+                "formal": 1214,
+                "informal": 566
+            }
+        },
+        {
+            "hindi": {
+                "negative": 10,
+                "positive": 17,
+                "formal": 21,
+                "informal": 6
+            }
+        },
+        {
+            "marathi": {
+                "negative": 104,
+                "positive": 65,
+                "formal": 96,
+                "informal": 73
+            }
+        },
+        {
+            "bengali": {
+                "negative": 40,
+                "positive": 17,
+                "formal": 13,
+                "informal": 44
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 132,
+                "positive": 119,
+                "formal": 193,
+                "informal": 58
+            }
+        }
+    ],
+    [
+        "phi_3_5_moe_instruct",
+        {
+            "english": {
+                "negative": 558,
+                "positive": 804,
+                "formal": 956,
+                "informal": 406
+            }
+        },
+        {
+            "spanish": {
+                "negative": 599,
+                "positive": 673,
+                "formal": 872,
+                "informal": 400
+            }
+        },
+        {
+            "french": {
+                "negative": 528,
+                "positive": 531,
+                "formal": 718,
+                "informal": 341
+            }
+        },
+        {
+            "german": {
+                "negative": 561,
+                "positive": 628,
+                "formal": 793,
+                "informal": 396
+            }
+        },
+        {
+            "hindi": {
+                "negative": 595,
+                "positive": 656,
+                "formal": 824,
+                "informal": 427
+            }
+        },
+        {
+            "marathi": {
+                "negative": 208,
+                "positive": 145,
+                "formal": 223,
+                "informal": 130
+            }
+        },
+        {
+            "bengali": {
+                "negative": 256,
+                "positive": 169,
+                "formal": 247,
+                "informal": 178
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 141,
+                "positive": 106,
+                "formal": 158,
+                "informal": 89
+            }
+        }
+    ],
+    [
+        "phi_3_small_8k_instruct",
+        {
+            "english": {
+                "negative": 268,
+                "positive": 698,
+                "formal": 642,
+                "informal": 324
+            }
+        },
+        {
+            "spanish": {
+                "negative": 269,
+                "positive": 562,
+                "formal": 542,
+                "informal": 289
+            }
+        },
+        {
+            "french": {
+                "negative": 196,
+                "positive": 395,
+                "formal": 413,
+                "informal": 178
+            }
+        },
+        {
+            "german": {
+                "negative": 264,
+                "positive": 471,
+                "formal": 498,
+                "informal": 237
+            }
+        },
+        {
+            "hindi": {
+                "negative": 243,
+                "positive": 281,
+                "formal": 342,
+                "informal": 182
+            }
+        },
+        {
+            "marathi": {
+                "negative": 210,
+                "positive": 321,
+                "formal": 369,
+                "informal": 162
+            }
+        },
+        {
+            "bengali": {
+                "negative": 585,
+                "positive": 592,
+                "formal": 833,
+                "informal": 344
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 535,
+                "positive": 465,
+                "formal": 720,
+                "informal": 280
+            }
+        }
+    ],
+    [
+        "qwen_2_5_14b_instruct",
+        {
+            "english": {
+                "negative": 728,
+                "positive": 1092,
+                "formal": 1260,
+                "informal": 560
+            }
+        },
+        {
+            "spanish": {
+                "negative": 273,
+                "positive": 540,
+                "formal": 533,
+                "informal": 280
+            }
+        },
+        {
+            "french": {
+                "negative": 187,
+                "positive": 362,
+                "formal": 367,
+                "informal": 182
+            }
+        },
+        {
+            "german": {
+                "negative": 208,
+                "positive": 383,
+                "formal": 356,
+                "informal": 235
+            }
+        },
+        {
+            "hindi": {
+                "negative": 495,
+                "positive": 802,
+                "formal": 841,
+                "informal": 456
+            }
+        },
+        {
+            "marathi": {
+                "negative": 588,
+                "positive": 612,
+                "formal": 797,
+                "informal": 403
+            }
+        },
+        {
+            "bengali": {
+                "negative": 535,
+                "positive": 648,
+                "formal": 719,
+                "informal": 464
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 495,
+                "positive": 500,
+                "formal": 650,
+                "informal": 345
+            }
+        }
+    ],
+    [
+        "qwen_2_5_7b_instruct",
+        {
+            "english": {
+                "negative": 1000,
+                "positive": 1155,
+                "formal": 1509,
+                "informal": 646
+            }
+        },
+        {
+            "spanish": {
+                "negative": 475,
+                "positive": 670,
+                "formal": 779,
+                "informal": 366
+            }
+        },
+        {
+            "french": {
+                "negative": 373,
+                "positive": 547,
+                "formal": 608,
+                "informal": 312
+            }
+        },
+        {
+            "german": {
+                "negative": 603,
+                "positive": 689,
+                "formal": 840,
+                "informal": 452
+            }
+        },
+        {
+            "hindi": {
+                "negative": 864,
+                "positive": 1016,
+                "formal": 1251,
+                "informal": 629
+            }
+        },
+        {
+            "marathi": {
+                "negative": 808,
+                "positive": 811,
+                "formal": 1067,
+                "informal": 552
+            }
+        },
+        {
+            "bengali": {
+                "negative": 830,
+                "positive": 785,
+                "formal": 1037,
+                "informal": 578
+            }
+        },
+        {
+            "gujarati": {
+                "negative": 618,
+                "positive": 598,
+                "formal": 782,
+                "informal": 434
+            }
+        }
+    ]
+]

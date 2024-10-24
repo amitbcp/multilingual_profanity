@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import gdown
+import paths
 import argparse
 from downloader import download_folder_if_not_exists, url_drive, url_metrics
 from paths import drive_info, dataset_paths, inference_paths

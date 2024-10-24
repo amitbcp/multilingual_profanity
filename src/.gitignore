@@ -1,1 +1,4 @@
-/drive/
+/metrics/
+
+# Ignore excel files
+*.xlsx

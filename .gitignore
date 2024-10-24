@@ -161,5 +161,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# Ignore the "drive" folder
+# Ignore the "drive" & "metrics" folder
 drive/
+metrics/
+
+# Ignore excel files
+*.xlsx
