@@ -23,7 +23,7 @@ def get_swear_words(language: str):
     Input : string variable mentioning language of swear words
     Output : Dataframe containing the respective swear words
     """
-    swear_words_excel = paths.swear_words_excel
+    swear_words_excel = paths.dataset_paths["swear_words"]
     df_swear = pd.read_excel(swear_words_excel)
     df_swear_language = df_swear[df_swear['language'].str.lower() == language.lower()]
     
@@ -36,6 +36,7 @@ def get_prompts(case: int, prompt_language: str, slang_language: str):
     """
     prompts_case_1_directory = dataset_paths["prompts"]["case_1"]
     prompts_case_2_directory = dataset_paths["prompts"]["case_2"]
+    prompts_case_3_directory = dataset_paths["prompts"]["case_3"]
     
     if case == 1:
         file_list = get_filenames_in_folder(prompts_case_1_directory)
@@ -47,8 +48,17 @@ def get_prompts(case: int, prompt_language: str, slang_language: str):
                 return df_prompts
         print("\n\nNo such file found!!\n\n")
         return None
-    else:
+    elif case == 2:
         file_list = get_filenames_in_folder(prompts_case_2_directory)
+        for file in file_list:
+            df_prompts = pd.read_csv(file)
+            df_prompts = df_prompts[df_prompts["Slang_Language"].str.lower() == slang_language.lower()]
+            print(f"Loaded prompts from: {file}") 
+            return df_prompts
+        print("\n\nNo such file found!!\n\n")
+        return None
+    else:
+        file_list = get_filenames_in_folder(prompts_case_3_directory)
         for file in file_list:
             df_prompts = pd.read_csv(file)
             df_prompts = df_prompts[df_prompts["Slang_Language"].str.lower() == slang_language.lower()]
@@ -64,6 +74,7 @@ def get_model_inferences(case, prompt_language, slang_language, model_name):
     """
     inference_case_1_directory = inference_paths["case_1"]
     inference_case_2_directory = inference_paths["case_2"]
+    inference_case_3_directory = inference_paths["case_3"]
     
     if case == 1:
         file_list = get_filenames_in_folder(inference_case_1_directory)
@@ -75,8 +86,16 @@ def get_model_inferences(case, prompt_language, slang_language, model_name):
                 return df_model_inference
         print("\n\nNo such file found!!\n\n")
         return None
-    else:
+    elif case == 2:
         file_list = get_filenames_in_folder(inference_case_2_directory)
+        for file in file_list:
+            if model_name.lower() in file.lower():
+                df_model_inference = pd.read_excel(file)
+                return df_model_inference
+        print("\n\nNo such file found!!\n\n")
+        return None
+    else:
+        file_list = get_filenames_in_folder(inference_case_3_directory)
         for file in file_list:
             if model_name.lower() in file.lower():
                 df_model_inference = pd.read_excel(file)

@@ -2,7 +2,7 @@ import os
 import gdown
 import pandas as pd
 import argparse
-from load_dataset import get_prompts
+from load_dataset import get_prompts, get_model_inferences
 from paths import drive_info
 from load_dataset import download_resources
 
@@ -21,6 +21,14 @@ def get_dataset_length_case_2(language):
     Output: length of the dataset (robust to any modifications)
     """
     dataset = get_prompts(2, language, language)  # model_id doesn't matter
+    return len(dataset)
+
+def get_dataset_length_case_3(language):
+    """
+    Input: language of slang words (transliterated) to get the dataset length dynamically (prompts are always in English)
+    Output: length of the dataset (robust to any modifications)
+    """
+    dataset = get_prompts(3, language, language)  # model_id doesn't matter
     return len(dataset)
 
 def main():

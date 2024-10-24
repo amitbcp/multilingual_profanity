@@ -12,6 +12,18 @@ from utils import get_model_info
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+## constants
+COLUMNS_CASE_1 = ["model_name", "english", "spanish", "french", "german", "hindi", "marathi", "bengali", "gujarati"]
+COLUMNS_CASE_2 = ["model_name", "spanish", "french", "german", "hindi", "marathi", "bengali", "gujarati"]
+COLUMNS_CASE_3 = ["model_name", "hindi", "marathi", "bengali", "gujarati"]
+LANGUAGES_CASE_1 = ["english", "spanish", "french", "german", "hindi", "marathi", "bengali", "gujarati"]
+LANGUAGES_CASE_2 = ["spanish", "french", "german", "hindi", "marathi", "bengali", "gujarati"]
+LANGUAGES_CASE_3 = ["hindi", "marathi", "bengali", "gujarati"]
+INDICES_CASE_1 = {language: idx for idx, language in enumerate(LANGUAGES_CASE_1)}
+INDICES_CASE_2 = {language: idx for idx, language in enumerate(LANGUAGES_CASE_2)}
+INDICES_CASE_3 = {language: idx for idx, language in enumerate(LANGUAGES_CASE_3)}
+
+
 def run_inference_and_save(llm, dataset, path, temperature, max_tokens):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     prompts_response = llm.run_inference(dataset, temperature, max_tokens)
@@ -19,14 +31,14 @@ def run_inference_and_save(llm, dataset, path, temperature, max_tokens):
     logger.info(f"Inference completed and saved to {path}")
     return pd.read_excel(path)
 
+
 def infer_model(case, prompt_language, swear_language, model_id, temperature, max_tokens, gpu_memory_utilization, tensor_parallel_size, all_languages):
     metrics = [model_id]
     llm = HFModel(model_id, gpu_memory_utilization=gpu_memory_utilization, tensor_parallel_size=tensor_parallel_size)
 
     if case == 1:
         if all_languages:
-            languages = ["english", "spanish", "french", "hindi", "gujarati", "marathi", "german", "bengali"]  # Add other languages as needed
-            for lang in languages:
+            for lang in LANGUAGES_CASE_1:
                 dataset = get_prompts(case, lang, lang)
                 model_saved_name = get_model_info(model_id)
                 path = f"{inference_paths['case_1']}/{lang}_prompts_{lang}_slangs_{model_saved_name}.xlsx"
@@ -37,7 +49,7 @@ def infer_model(case, prompt_language, swear_language, model_id, temperature, ma
                     run_inference_and_save(llm, dataset, path, temperature, max_tokens)
                     logger.info(f"Inference completed for language: {lang}, model: {model_id}")
 
-        else:
+        elif case == 2:
             dataset = get_prompts(case, prompt_language, swear_language)
             model_saved_name = get_model_info(model_id)
             path = f"{inference_paths['case_1']}/{prompt_language}_prompts_{swear_language}_slangs_{model_saved_name}.xlsx"
@@ -48,7 +60,7 @@ def infer_model(case, prompt_language, swear_language, model_id, temperature, ma
                 run_inference_and_save(llm, dataset, path, temperature, max_tokens)
                 logger.info(f"Inference completed for language: {prompt_language}, model: {model_id}")
 
-    else:
+    elif case == 2:
         prompt_language = "english"
         dataset = get_prompts(case, prompt_language, swear_language)
         model_saved_name = get_model_info(model_id)
@@ -59,6 +71,19 @@ def infer_model(case, prompt_language, swear_language, model_id, temperature, ma
         else:
             run_inference_and_save(llm, dataset, path, temperature, max_tokens)
             logger.info(f"Inference completed for language: {prompt_language}, model: {model_id}")
+            
+    else:
+        prompt_language = "english"
+        dataset = get_prompts(case, prompt_language, swear_language)
+        model_saved_name = get_model_info(model_id)
+        path = f"{inference_paths['case_3']}/{prompt_language}_prompts_{model_saved_name}.xlsx"
+        
+        if os.path.exists(path):
+            logger.info(f"File already exists: {path}. Skipping inference.")
+        else:
+            run_inference_and_save(llm, dataset, path, temperature, max_tokens)
+            logger.info(f"Inference completed for language: {prompt_language}, model: {model_id}")
+
 
 def main(args): 
     infer_model(
