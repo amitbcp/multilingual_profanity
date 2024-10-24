@@ -11,3 +11,5 @@ googledrivedownloader
 #torch
 #vllm
 python-dotenv
+openpyxl
+xlrd
