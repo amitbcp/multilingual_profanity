@@ -6,6 +6,7 @@ import json
 import argparse
 from load_dataset import get_swear_words, get_prompts, get_model_inferences
 from utils import model_metadata
+from annotate_inference import annotate_inferences
 from eval_utils import evaluate_case_1, evaluate_case_2, get_details_case_1, get_details_case_2, evaluate_case_3, get_details_case_3
 
 INDICES = {"english": 0, "spanish": 1, "french": 2, "german": 3, "hindi": 4, "marathi": 5, "bengali": 6, "gujarati": 7}
@@ -167,10 +168,9 @@ def calculate_metrics(case) :
                 
                 metrics.append(metric)
                 metrics_percentage.append(round(metric / len(dataset) * 100, 2))
-                
                 details.append(get_details_case_1(dataset, language))
                 
-                print(f"\nCalculated metrics for {model_id} -> {language}!!\n")
+                print(f"\Dumped metrics for {model_id} -> {language}!!\n")
             
             print(metrics)
             print(metrics_percentage)
@@ -180,6 +180,9 @@ def calculate_metrics(case) :
             save_details(case, details)
             
             print(f"\nDumped metrics for {model_id}!!")
+        
+        ## annotating the inferences
+        annotate_inferences(1)
             
     elif (case == 2) :
         
@@ -212,6 +215,9 @@ def calculate_metrics(case) :
             
             print(f"\nDumped metrics for {model_id}!!")
             
+        ## annotating the inferences
+        annotate_inferences(2)
+            
     else :
             
         for model_id in MODELS : 
@@ -242,6 +248,9 @@ def calculate_metrics(case) :
             save_details(case, details)
             
             print(f"\nDumped metrics for {model_id}!!")
+            
+        ## annotating the inferences
+        annotate_inferences(3)
             
 
 def main(args) : 

@@ -20,3 +20,10 @@ inference_paths = {
     "case_2": "drive/model_inference/case_2",
     "case_3": "drive/model_inference/case_3"
 }
+
+# Annotation paths
+annotation_paths = {
+    "case_1": "drive/model_inference_annotated/case_1",
+    "case_2": "drive/model_inference_annotated/case_2",
+    "case_3": "drive/model_inference_annotated/case_3"
+}
