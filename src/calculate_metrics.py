@@ -170,7 +170,7 @@ def calculate_metrics(case) :
                 metrics_percentage.append(round(metric / len(dataset) * 100, 2))
                 details.append(get_details_case_1(dataset, language))
                 
-                print(f"\Dumped metrics for {model_id} -> {language}!!\n")
+                print(f"\nDumped metrics for {model_id} -> {language}!!\n")
             
             print(metrics)
             print(metrics_percentage)
