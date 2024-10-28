@@ -1,0 +1,437 @@
+[
+    [
+        "llama3_2_1b_instruct",
+        {
+            "hindi": {
+                "negative": 413,
+                "positive": 871,
+                "formal": 774,
+                "informal": 510
+            },
+            "marathi": {
+                "negative": 460,
+                "positive": 1021,
+                "formal": 906,
+                "informal": 575
+            },
+            "bengali": {
+                "negative": 424,
+                "positive": 896,
+                "formal": 792,
+                "informal": 528
+            },
+            "gujarati": {
+                "negative": 432,
+                "positive": 932,
+                "formal": 823,
+                "informal": 541
+            }
+        }
+    ],
+    [
+        "llama3_1_70b_instruct",
+        {
+            "hindi": {
+                "negative": 1133,
+                "positive": 1132,
+                "formal": 1547,
+                "informal": 718
+            },
+            "marathi": {
+                "negative": 1233,
+                "positive": 1259,
+                "formal": 1709,
+                "informal": 783
+            },
+            "bengali": {
+                "negative": 1230,
+                "positive": 1247,
+                "formal": 1694,
+                "informal": 783
+            },
+            "gujarati": {
+                "negative": 1208,
+                "positive": 1233,
+                "formal": 1664,
+                "informal": 777
+            }
+        }
+    ],
+    [
+        "llama3_2_3b_instruct",
+        {
+            "hindi": {
+                "negative": 757,
+                "positive": 912,
+                "formal": 1089,
+                "informal": 580
+            },
+            "marathi": {
+                "negative": 795,
+                "positive": 1027,
+                "formal": 1210,
+                "informal": 612
+            },
+            "bengali": {
+                "negative": 701,
+                "positive": 919,
+                "formal": 1057,
+                "informal": 563
+            },
+            "gujarati": {
+                "negative": 729,
+                "positive": 952,
+                "formal": 1097,
+                "informal": 584
+            }
+        }
+    ],
+    [
+        "llama3_70b_instruct",
+        {
+            "hindi": {
+                "negative": 1180,
+                "positive": 1222,
+                "formal": 1624,
+                "informal": 778
+            },
+            "marathi": {
+                "negative": 1257,
+                "positive": 1314,
+                "formal": 1763,
+                "informal": 808
+            },
+            "bengali": {
+                "negative": 1261,
+                "positive": 1290,
+                "formal": 1748,
+                "informal": 803
+            },
+            "gujarati": {
+                "negative": 1247,
+                "positive": 1277,
+                "formal": 1717,
+                "informal": 807
+            }
+        }
+    ],
+    [
+        "llama3_8b_instruct",
+        {
+            "hindi": {
+                "negative": 738,
+                "positive": 1147,
+                "formal": 1296,
+                "informal": 589
+            },
+            "marathi": {
+                "negative": 939,
+                "positive": 1267,
+                "formal": 1524,
+                "informal": 682
+            },
+            "bengali": {
+                "negative": 902,
+                "positive": 1220,
+                "formal": 1458,
+                "informal": 664
+            },
+            "gujarati": {
+                "negative": 898,
+                "positive": 1231,
+                "formal": 1458,
+                "informal": 671
+            }
+        }
+    ],
+    [
+        "llama3_1_8b_instruct",
+        {
+            "hindi": {
+                "negative": 768,
+                "positive": 1042,
+                "formal": 1295,
+                "informal": 515
+            },
+            "marathi": {
+                "negative": 939,
+                "positive": 1189,
+                "formal": 1488,
+                "informal": 640
+            },
+            "bengali": {
+                "negative": 890,
+                "positive": 1143,
+                "formal": 1422,
+                "informal": 611
+            },
+            "gujarati": {
+                "negative": 903,
+                "positive": 1134,
+                "formal": 1433,
+                "informal": 604
+            }
+        }
+    ],
+    [
+        "mistral_7b_instruct_v1",
+        {
+            "hindi": {
+                "negative": 1145,
+                "positive": 1183,
+                "formal": 1567,
+                "informal": 761
+            },
+            "marathi": {
+                "negative": 1171,
+                "positive": 1227,
+                "formal": 1629,
+                "informal": 769
+            },
+            "bengali": {
+                "negative": 1126,
+                "positive": 1166,
+                "formal": 1553,
+                "informal": 739
+            },
+            "gujarati": {
+                "negative": 1146,
+                "positive": 1170,
+                "formal": 1563,
+                "informal": 753
+            }
+        }
+    ],
+    [
+        "mistral_7b_instruct_v2",
+        {
+            "hindi": {
+                "negative": 1288,
+                "positive": 1253,
+                "formal": 1735,
+                "informal": 806
+            },
+            "marathi": {
+                "negative": 1312,
+                "positive": 1301,
+                "formal": 1781,
+                "informal": 832
+            },
+            "bengali": {
+                "negative": 1225,
+                "positive": 1195,
+                "formal": 1645,
+                "informal": 775
+            },
+            "gujarati": {
+                "negative": 1266,
+                "positive": 1273,
+                "formal": 1731,
+                "informal": 808
+            }
+        }
+    ],
+    [
+        "mistral_7b_instruct_v3",
+        {
+            "hindi": {
+                "negative": 1278,
+                "positive": 1288,
+                "formal": 1737,
+                "informal": 829
+            },
+            "marathi": {
+                "negative": 1310,
+                "positive": 1318,
+                "formal": 1799,
+                "informal": 829
+            },
+            "bengali": {
+                "negative": 1223,
+                "positive": 1239,
+                "formal": 1683,
+                "informal": 779
+            },
+            "gujarati": {
+                "negative": 1276,
+                "positive": 1317,
+                "formal": 1778,
+                "informal": 815
+            }
+        }
+    ],
+    [
+        "mixtral_8x22b_instruct_v01",
+        {
+            "hindi": {
+                "negative": 1041,
+                "positive": 1263,
+                "formal": 1618,
+                "informal": 686
+            },
+            "marathi": {
+                "negative": 1197,
+                "positive": 1313,
+                "formal": 1762,
+                "informal": 748
+            },
+            "bengali": {
+                "negative": 1156,
+                "positive": 1292,
+                "formal": 1717,
+                "informal": 731
+            },
+            "gujarati": {
+                "negative": 1131,
+                "positive": 1277,
+                "formal": 1686,
+                "informal": 722
+            }
+        }
+    ],
+    [
+        "mixtral_8x7b_instruct_v01",
+        {
+            "hindi": {
+                "negative": 1285,
+                "positive": 1275,
+                "formal": 1750,
+                "informal": 810
+            },
+            "marathi": {
+                "negative": 1289,
+                "positive": 1306,
+                "formal": 1786,
+                "informal": 809
+            },
+            "bengali": {
+                "negative": 1267,
+                "positive": 1277,
+                "formal": 1751,
+                "informal": 793
+            },
+            "gujarati": {
+                "negative": 1279,
+                "positive": 1295,
+                "formal": 1773,
+                "informal": 801
+            }
+        }
+    ],
+    [
+        "phi_3_5_moe_instruct",
+        {
+            "hindi": {
+                "negative": 894,
+                "positive": 1251,
+                "formal": 1461,
+                "informal": 684
+            },
+            "marathi": {
+                "negative": 992,
+                "positive": 1258,
+                "formal": 1548,
+                "informal": 702
+            },
+            "bengali": {
+                "negative": 944,
+                "positive": 1200,
+                "formal": 1472,
+                "informal": 672
+            },
+            "gujarati": {
+                "negative": 927,
+                "positive": 1245,
+                "formal": 1492,
+                "informal": 680
+            }
+        }
+    ],
+    [
+        "phi_3_small_8k_instruct",
+        {
+            "hindi": {
+                "negative": 495,
+                "positive": 1184,
+                "formal": 1128,
+                "informal": 551
+            },
+            "marathi": {
+                "negative": 577,
+                "positive": 1246,
+                "formal": 1234,
+                "informal": 589
+            },
+            "bengali": {
+                "negative": 536,
+                "positive": 1236,
+                "formal": 1194,
+                "informal": 578
+            },
+            "gujarati": {
+                "negative": 525,
+                "positive": 1197,
+                "formal": 1162,
+                "informal": 560
+            }
+        }
+    ],
+    [
+        "qwen_2_5_14b_instruct",
+        {
+            "hindi": {
+                "negative": 594,
+                "positive": 1087,
+                "formal": 1141,
+                "informal": 540
+            },
+            "marathi": {
+                "negative": 911,
+                "positive": 1267,
+                "formal": 1507,
+                "informal": 671
+            },
+            "bengali": {
+                "negative": 916,
+                "positive": 1230,
+                "formal": 1479,
+                "informal": 667
+            },
+            "gujarati": {
+                "negative": 813,
+                "positive": 1258,
+                "formal": 1435,
+                "informal": 636
+            }
+        }
+    ],
+    [
+        "qwen_2_5_7b_instruct",
+        {
+            "hindi": {
+                "negative": 1143,
+                "positive": 1286,
+                "formal": 1673,
+                "informal": 756
+            },
+            "marathi": {
+                "negative": 1201,
+                "positive": 1292,
+                "formal": 1735,
+                "informal": 758
+            },
+            "bengali": {
+                "negative": 1166,
+                "positive": 1299,
+                "formal": 1716,
+                "informal": 749
+            },
+            "gujarati": {
+                "negative": 1141,
+                "positive": 1247,
+                "formal": 1665,
+                "informal": 723
+            }
+        }
+    ]
+]

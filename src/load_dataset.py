@@ -60,7 +60,7 @@ def get_prompts(case: int, prompt_language: str, slang_language: str):
     else:
         file_list = get_filenames_in_folder(prompts_case_3_directory)
         for file in file_list:
-            df_prompts = pd.read_csv(file)
+            df_prompts = pd.read_excel(file)
             df_prompts = df_prompts[df_prompts["Slang_Language"].str.lower() == slang_language.lower()]
             print(f"Loaded prompts from: {file}") 
             return df_prompts
