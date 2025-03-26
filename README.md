@@ -67,7 +67,7 @@ Our analysis reveal the models struggle to keep within ethical standards and saf
 </p>
 
 ## RQ2 : Are LLMs more vulnerable in Latin-based languages than in Indic languages?
-The harmful rate reveals the models to be more vulnerable to Indic languages due to them being comparitively underrepresented in the training corpus, thus adversely affecting the models' ability to effectively distinguish and avoid using offensive terms. Transliterated forms, used to further confuse the models, exhibit a higher average harmful rate. These observations underscore the immediate need for more comprehensive and robust datasets to improve LLM safety.
+The harmful rate reveals the models to be more vulnerable to Indic languages due to them being comparatively underrepresented in the training corpus, thus adversely affecting the models' ability to effectively distinguish and avoid using offensive terms. Transliterated forms, used to further confuse the models, exhibit a higher average harmful rate. These observations underscore the immediate need for more comprehensive and robust datasets to improve LLM safety.
 
 ## Case 1
 <p align="center">
