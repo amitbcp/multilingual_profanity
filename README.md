@@ -113,6 +113,6 @@ We compare the harmful rate metric for older and newer models for Llama and Mist
 We attempt to create a dataset to assess the current safety standpoint of LLMs. The use of swear words is solely for research purposes. Using them is viewed as unethical and is thoroughly discredited. We don't recommend their usage in any capacity. Any similarity to any person or corporation or any ethical infringement is completely unintentional, in which case we request you to contact us directly. We commit to address any legitimate concerns responsibly.
 
 # Contacts
-Hitesh Patel : Email <br>
-Amit Agarwal : Email <br>
-Arion Das : Email
+Hitesh Patel : hitesh.laxmichand.patel@oracle.com <br>
+Amit Agarwal : amit.pinaki@gmail.com <br>
+Arion Das : ariondasad@gmail.com
